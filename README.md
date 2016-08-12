@@ -17,7 +17,7 @@ import { IpGeo } from 'bas-meteor-ip-geo';
 var geoData = IpGeo.geocode('74.125.224.72');
 
 // or asynchronously
-IpGeo.geocode('74.125.224.72', function(error, result){
+IpGeo.geocode('74.125.224.72', false, function(error, result){
     if(!error){
         //...
     }
@@ -45,7 +45,7 @@ Custom download url:
 IpGeo.defaultDatabaseUrl = 'https://sample.com/GeoLite2-City.mmdb.gz';
 ```
 
-Or
+Or Meteor.settings
 
 ```json
 {
