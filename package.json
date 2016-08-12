@@ -1,0 +1,28 @@
+{
+  "name": "bas-meteor-ip-geo",
+  "version": "1.0.0",
+  "description": "Geocode IP addresses using MaxMind IP database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Basgrani@github.com/Basgrani-Org/bas-meteor-ip-geo.git"
+  },
+  "keywords": [
+    "meteor",
+    "ip",
+    "geo"
+  ],
+  "author": "Jorge Gonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Basgrani-Org/bas-meteor-ip-geo/issues"
+  },
+  "homepage": "https://github.com/Basgrani-Org/bas-meteor-ip-geo#readme",
+  "dependencies": {
+    "bas-meteor-utils": "*",
+    "maxmind-db-reader": "^0.2.1"
+  }
+}
