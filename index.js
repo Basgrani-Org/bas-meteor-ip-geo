@@ -3,19 +3,19 @@ BasMTR = require('bas-meteor-utils').BasMTR;
 /* jshint +W020 */
 exports.BasMTR = BasMTR;
 
-if(BasMTR.ip_geo_isInit){return;}
+var _is_init = BasMTR.ip_geo_isInit;
 
-require('./lib');
+if(!_is_init){ require('./lib'); }
 
 // Is Server
 if(Meteor.isServer){
-    require('./server');
+    if(!_is_init){ require('./server'); }
     exports.IpGeo = BasMTR.IpGeo;
 }
 
 // Is Client
 if(Meteor.isClient){
-    require('./client');
+    if(!_is_init){ require('./client'); }
 }
 
 BasMTR.ip_geo_isInit = true;
