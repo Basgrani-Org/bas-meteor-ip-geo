@@ -1,21 +1,14 @@
-/* jshint -W020 */
-BasMTR = require('bas-meteor-utils').BasMTR;
-/* jshint +W020 */
-exports.BasMTR = BasMTR;
+require('bas-meteor-utils');
 
-var _is_init = BasMTR.ip_geo_isInit;
-
-if(!_is_init){ require('./lib'); }
+require('./lib');
 
 // Is Server
 if(Meteor.isServer){
-    if(!_is_init){ require('./server'); }
+    require('./server');
     exports.IpGeo = BasMTR.IpGeo;
 }
 
 // Is Client
 if(Meteor.isClient){
-    if(!_is_init){ require('./client'); }
+    require('./client');
 }
-
-BasMTR.ip_geo_isInit = true;

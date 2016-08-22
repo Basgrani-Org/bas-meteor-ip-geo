@@ -1,12 +1,8 @@
-// Set start point
-var _start_point = BasMTR;
-
-// JWPlayer
+// IpGeo
 (function (mtr) {
-    _start_point.IpGeo = {};
-    var _this = function(){return _start_point.IpGeo;}();
-
-    _this.defaultDatabaseUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
+    // Set start point
+    if(!BasMTR.IpGeo){ BasMTR.IpGeo = {}; }
+    var _this = function(){return BasMTR.IpGeo;}();
 
     _this.databaseStates = {
         NotLoaded: 'not-loaded',
@@ -14,9 +10,6 @@ var _start_point = BasMTR;
         Loaded: 'loaded',
         LoadFailed: 'failed'
     };
-
-    _this.databaseState = _this.databaseStates.NotLoaded;
-    _this.database = null;
 
     /**
      * Load IP database (asynchronously)
@@ -61,7 +54,7 @@ var _start_point = BasMTR;
             switch(_this.databaseState){
                 case _this.databaseStates.NotLoaded:
                 case _this.databaseStates.Loading:
-                    e = new Error('Database is not ready yet');
+                    e = new Error('Database is not ready yet [ip-geo]');
                     _this.load();
                     if(callback){
                         callback.call(_this, e);
@@ -70,7 +63,7 @@ var _start_point = BasMTR;
                     }
                     break;
                 case _this.databaseStates.LoadFailed:
-                    e = new Error('Failed to load database');
+                    e = new Error('Failed to load database [ip-geo]');
                     if(callback){
                         callback.call(_this, e);
                     } else {
@@ -98,30 +91,34 @@ var _start_point = BasMTR;
         } : r);
     };
 
-    // Meteor Init
-    _this.mtr_init = function() {
-        // Load Geo IP data
-        _this.load();
+    // Init only one once
+    _this.init = function() {
+        _this.defaultDatabaseUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
+        _this.databaseState = _this.databaseStates.NotLoaded;
+        _this.database = null;
+
+        // Methods
+        mtr.methods({
+            'BasMTR:IpGeo:geocode': function (ip, verbose) {
+                this.unblock();
+                if (!ip){ ip = this.connection.clientAddress; }
+                try {
+                    return mtr.wrapAsync(_this.geocode)(ip, verbose);
+                }
+                catch(err) {
+                    return err.message;
+                }
+            }
+        });
     };
 
     // Meteor startup
     mtr.startup(function () {
-        // Init
-        _this.mtr_init();
+        // Load Geo IP data
+        _this.load();
     });
 
-}( Meteor ));
+    // Init
+    if(!_this.is_init){_this.init();_this.is_init = true;}
 
-// Methods
-Meteor.methods({
-    'BasMTR:IpGeo:geocode': function (ip, verbose) {
-        this.unblock();
-        if (!ip){ ip = this.connection.clientAddress; }
-        try {
-            return Meteor.wrapAsync(BasMTR.IpGeo.geocode)(ip, verbose);
-        }
-        catch(err) {
-            return err.message;
-        }
-    }
-});
+}( Meteor ));
