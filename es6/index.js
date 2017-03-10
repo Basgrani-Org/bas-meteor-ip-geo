@@ -1,6 +1,10 @@
-require('bas-meteor-utils');
+import 'bas-meteor-utils';
 
-require('./lib');
+// Import Init
+import './init';
+
+// Import libs
+import './lib';
 
 // Is Server
 if (Meteor.isServer) {

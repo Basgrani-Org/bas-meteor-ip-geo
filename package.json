@@ -2,7 +2,7 @@
   "name": "bas-meteor-ip-geo",
   "version": "1.0.5",
   "description": "Geocode IP addresses using MaxMind IP database.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

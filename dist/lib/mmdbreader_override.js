@@ -1,22 +1,32 @@
+'use strict';
+
+var _zlib = require('zlib');
+
+var _zlib2 = _interopRequireDefault(_zlib);
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var fileLocation = '/tmp/GeoLite2-City.mmdb';
-var zlib         = require('zlib');
-var fs           = require('fs');
 
 /* jshint -W100 */
 var urlRegExp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?‌​(?:[\w]*))?)/;
 /* jshint +W100 */
 
-mmdbreader = require('maxmind-db-reader');
+var mmdbreader = require('maxmind-db-reader');
 var __open = mmdbreader.open;
 
-var isUrl = function (path) {
+var isUrl = function isUrl(path) {
     return urlRegExp.exec(path);
 };
 
-var unzip = function (response, filePath, callback) {
+var unzip = function unzip(response, filePath, callback) {
     try {
-        var gunzip = zlib.createGunzip();
-        var file   = fs.createWriteStream(filePath);
+        var gunzip = _zlib2.default.createGunzip();
+        var file = _fs2.default.createWriteStream(filePath);
         response.pipe(gunzip);
 
         gunzip.on('data', function (data) {
@@ -38,7 +48,7 @@ var unzip = function (response, filePath, callback) {
     }
 };
 
-var newOpen = function (database, callback) {
+var newOpen = function newOpen(database, callback) {
     if (!isUrl(database)) {
         __open.call(this, fileLocation, callback);
     } else {

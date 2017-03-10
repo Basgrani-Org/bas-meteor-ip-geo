@@ -1,9 +1,11 @@
-# Geocode IP addresses for Meteor (v1.4+)
+# Geocode IP addresses for Meteor (v1.4.3+)
+
+[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9EARMSN5WMDDY)
 
 ## Install
 
 ```
-npm install bas-meteor-ip-geo
+meteor npm install bas-meteor-ip-geo
 ```
 
 ## Use
@@ -14,7 +16,7 @@ npm install bas-meteor-ip-geo
 import { IpGeo } from 'bas-meteor-ip-geo';
 
 // you can do it synchronously 
-var geoData = IpGeo.geocode('74.125.224.72');
+let geoData = IpGeo.geocode('74.125.224.72');
 
 // or asynchronously
 IpGeo.geocode('74.125.224.72', false, function(error, result){
@@ -54,3 +56,39 @@ Or Meteor.settings
     }
 }
 ```
+
+## Backers
+
+### Maintainers
+
+These amazing people are maintaining this project:
+
+- [Basgrani](http://basgrani.com) - [view contributions](https://github.com/Basgrani-Org/bas-meteor-ip-geo/commits?author=Basgrani)
+
+### Sponsors
+
+No sponsors yet! Will you be the first?
+
+[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9EARMSN5WMDDY)
+
+### Contributors
+
+These amazing people have contributed code to this project:
+
+- [Basgrani](http://basgrani.com) - [view contributions](https://github.com/Basgrani-Org/bas-meteor-ip-geo/commits?author=Basgrani)
+
+### Contribute
+
+If you wish you can contribute to the development of this project:
+
+- Contribute with your code
+
+- [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9EARMSN5WMDDY)
+
+## License
+
+- View the [LICENSE](https://github.com/Basgrani-Org/bas-meteor-ip-geo/blob/master/LICENSE.md)
+
+## Contact
+
+- dev@basgrani.com
