@@ -17,7 +17,7 @@ const IpGeo_ = ((mtr) => {
         NotLoaded : 'not-loaded',
         Loading   : 'loading',
         Loaded    : 'loaded',
-        LoadFailed: 'failed'
+        LoadFailed: 'failed',
     };
 
     let _defaultDatabaseUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
@@ -127,17 +127,17 @@ const IpGeo_ = ((mtr) => {
         static _formatResponse(r, verbose) {
             return verbose ? r : (r ? {
                         city     : {
-                            name: r.city && r.city.names && r.city.names.en
+                            name: r.city && r.city.names && r.city.names.en,
                         },
                         continent: {
                             name: r.continent && r.continent.names && r.continent.names.en,
-                            code: r.continent && r.continent.code
+                            code: r.continent && r.continent.code,
                         },
                         country  : {
                             name: r.country && r.country.names && r.country.names.en,
-                            code: r.country && r.country.iso_code
+                            code: r.country && r.country.iso_code,
                         },
-                        location : r.location
+                        location : r.location,
                     } : r);
         }
     }
@@ -159,7 +159,7 @@ const IpGeo_ = ((mtr) => {
             catch (err) {
                 return err.message;
             }
-        }
+        },
     });
 
     // ------------------------------------------------------------------------
