@@ -11,8 +11,8 @@ require('./lib');
 
 // Import Init
 if (Meteor.isServer) {
-    require('./server');
-    exports.IpGeo = BasMTR.IpGeo;
+  require('./server');
+  exports.IpGeo = BasMTR.IpGeo;
 }
 
 // Is Client
@@ -20,5 +20,5 @@ if (Meteor.isServer) {
 
 // Import libs
 if (Meteor.isClient) {
-    require('./client');
+  require('./client');
 }
