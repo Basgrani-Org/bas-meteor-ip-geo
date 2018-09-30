@@ -1,6 +1,6 @@
 {
   "name": "bas-meteor-ip-geo",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Geocode IP addresses using MaxMind IP database.",
   "main": "dist/index.js",
   "scripts": {
